@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
+import EventsList from './components/EventsList/EventsList';
+import MainPanel from "./components/MainPanel/MainPanel";
+import CfpForm from "./components/CfpForm/CfpForm";
 
 class App extends Component {
     constructor() {
@@ -33,20 +36,18 @@ class App extends Component {
     render() {
         return(
             <div className="App">
-                <br />
-
-                <input type="text" name={"title"} value={this.state.title} onChange={this.handleChange} />
-                <br />
-                <input type="number" name={"amount"} value={this.state.amount} onChange={this.handleChange} placeholder={0} />
-                <br />
-                <button onClick={this.postData}> Post! </button>
-                <br /><br />
-
-                <ol>
-                    {this.state.ticketItems.map((value, key) => {
-                        return (<li key={key}>{value.title}: {value.amount}</li>)
-                    })}
-                </ol>
+                <div className="inner">
+                    <div className={'inner__col'}>
+                        <h1 className={'title'}>Welcome to Papers &mdash;<br />The Best Community Platform Ever</h1>
+                        <h2 className={'subtitle'}>Happy to see you here!</h2>
+                        <p>To start work with us, please Sign in.<br />
+                           Haven't been here yet? Want to join us? Please, Sign up.
+                        </p>
+                    </div>
+                    <CfpForm />
+                </div>
+                {/*<MainPanel />*/}
+                {/*<EventsList />*/}
             </div>
         )
     };
