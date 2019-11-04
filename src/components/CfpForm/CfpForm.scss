@@ -14,6 +14,7 @@
     padding: 3px 15px 5px 5px;
     border: none;
     border-bottom: 1px solid #cccccc;
+    outline: none;
   }
 
   &__label {
@@ -22,6 +23,7 @@
     margin-bottom: 22px;
     font-size: 0.75rem;
     color: #cccccc;
+    transition: color 0.2s ease-in-out;
   }
 
   &__button {

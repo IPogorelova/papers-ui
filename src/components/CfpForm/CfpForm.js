@@ -8,12 +8,15 @@ class CfpForm extends Component {
             name: '',
             email: '',
             topic: '',
-            abstract: ''
+            abstract: '',
+            talksItems: []
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.postData = this.postData.bind(this);
         this.onMouseOver = this.onMouseOver.bind(this);
+        this.handleFocus = this.handleFocus.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
     }
 
     handleChange(e) {
@@ -22,26 +25,47 @@ class CfpForm extends Component {
         })
     }
 
-    postData() {
+    postData(e) {
+        e.preventDefault();
         console.log(this.state);
-        if (this.state.amount > 0 && this.state.title.length) {
+        if (this.state.amount > 0 && this.state.topic.length && this.state.abstract.length) {
             this.setState ({
-                talksItems: [...this.state.ticketItems, {title: this.state.title, amount: this.state.amount}],
+                talksItems: [...this.state.ticketItems,
+                    {
+                        speaker: {
+                        name: this.state.name,
+                        email: this.state.email,
+                        },
+                        talk: {
+                        topic: this.state.topic,
+                        abstract: this.state.abstract
+                        }
+                    }],
+                name: '',
+                email: '',
                 topic: '',
                 abstract: ''
             })
         }
+        console.log(this.state)
     }
 
-    onMouseOver(event) {
-        let colors = ["rgb(147, 183, 190)", "rgb(252, 222, 156)", "rgb(102, 51, 153)"];
-        let bg = window.getComputedStyle(event.target, null).getPropertyValue("background-color");
+    onMouseOver(e) {
+        let colors = ["rgb(147, 183, 190)", "rgb(255, 202, 156)", "rgb(102, 51, 153)", "rgb(224, 224, 224)"];
+        let bg = window.getComputedStyle(e.target, null).getPropertyValue("background-color");
         colors.splice((colors.indexOf(bg)), 1);
         let randomNumber = Math.floor(Math.random()*colors.length);
 
-        event.target.style.backgroundColor = colors[randomNumber];
+        e.target.style.backgroundColor = colors[randomNumber];
     }
 
+    handleFocus(e) {
+        e.target.parentElement.style.color = '#262626';
+    }
+
+    handleBlur(e) {
+        e.target.parentElement.removeAttribute('style');
+    }
 
     render() {
         return(
@@ -49,19 +73,23 @@ class CfpForm extends Component {
                 <form className={"form"}>
                     <label className={"form__label"}>
                         Your name:&nbsp;&nbsp;
-                        <input type="text" name={"name"} className={"form__input"} value={this.state.amount} onChange={this.handleChange} />
+                        <input type="text" name={"name"} className={"form__input"} value={this.state.amount}
+                               onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} />
                     </label>
                     <label className={"form__label"}>
                         Your e-mail:&nbsp;&nbsp;
-                        <input type="email" name={"email"} className={"form__input"} value={this.state.amount} onChange={this.handleChange} />
+                        <input type="email" name={"email"} className={"form__input"} value={this.state.amount}
+                               onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} />
                     </label>
                     <label className={"form__label"}>
                         Talk topic:&nbsp;&nbsp;
-                        <input type="text" name={"topic"} className={"form__input"} value={this.state.title} onChange={this.handleChange} />
+                        <input type="text" name={"topic"} className={"form__input"} value={this.state.title}
+                               onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} />
                     </label>
                     <label className={"form__label"}>
                         Talk abstract:&nbsp;&nbsp;
-                        <textarea name={"abstract"} className={"form__input"} value={this.state.amount} onChange={this.handleChange} />
+                        <textarea name={"abstract"} className={"form__input"} value={this.state.amount}
+                                  onChange={this.handleChange} onFocus={this.handleFocus} onBlur={this.handleBlur} />
                     </label>
                     <button className={"button form__button"} onClick={this.postData} onMouseOver={this.onMouseOver}> Post! </button>
                 </form>
