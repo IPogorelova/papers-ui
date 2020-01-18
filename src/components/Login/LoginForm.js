@@ -1,64 +1,73 @@
 import React, {Component} from 'react';
-import TextFieldGroup from "../TextFieldGroup/TextFieldGroup";
 import axios from 'axios';
 
 const LOGIN_URL = 'https://papers-api.azurewebsites.net/api/v1/User/login';
 const REGISTER_URL = 'https://papers-api.azurewebsites.net/api/v1/User/register';
 
-class About extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: "",
-            password: "",
-        }
+const LoginForm = () => {
+    const [ email, setEmail] = React.useState('');
+    const [ password, setPassword] = React.useState('');
 
-        this.onSubmit = this.onSubmit.bind(this);
-        this.onChange = this.onChange.bind(this);
-    }
-
-    onSubmit(e) {
+    const onSubmit = (e) => {
         e.preventDefault()
-        const userInfo = JSON.stringify(this.state)
-        console.log(userInfo)
-
         axios({
             method: 'POST',
-            url: REGISTER_URL,
+            url: LOGIN_URL,
             data: {
-                email: this.state.email,
-                password: this.state.password
+                email: email,
+                password: password
             }
         })
     }
 
-    onChange(e) {
-        this.setState({[e.target.name]: e.target.value})
+    const changeButtonColor = (e) => {
+        let colors = ["rgb(147, 183, 190)", "rgb(255, 202, 156)", "rgb(102, 51, 153)", "rgb(114, 4, 8)", "rgb(0, 59, 33)", "rgb(243, 207, 216)"];
+        let bg = window.getComputedStyle(e.target, null).getPropertyValue("background-color");
+        colors.splice((colors.indexOf(bg)), 1);
+        let randomNumber = Math.floor(Math.random()*colors.length);
+
+        e.target.style.backgroundColor = colors[randomNumber];
     }
 
-    render() {
-        const { email, password } = this.state;
-        return (
-            <form className="form" onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                    field = "email"
-                    label = "Email"
-                    value = {email}
-                    onChange = {this.onChange}
-                    type = "email"
-                />
-                <TextFieldGroup
-                    field = "password"
-                    label = "Password"
-                    value = {password}
-                    onChange = {this.onChange}
-                    type = "password"
-                />
-
-                <button type="submit" className={"button form__button"}>Login</button>
-            </form>
-        )
+    const handleFocus = (e) => {
+        e.target.parentElement.style.color = '#262626';
     }
-}
 
-export default About;
+    const handleBlur = (e) => {
+        e.target.parentElement.removeAttribute('style');
+    }
+
+    return (
+        <form className="form">
+            <label className="form__label">
+                Your e-mail:&nbsp;&nbsp;
+                <input
+                    type="email"
+                    name="email"
+                    className="form__input"
+                    onChange={e => setEmail(e.currentTarget.value)}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                />
+            </label>
+            <label className="form__label">
+                Your password:&nbsp;&nbsp;
+                <input
+                    type="password"
+                    name="password"
+                    className="form__input"
+                    onChange={e => setEmail(e.currentTarget.value)}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                />
+            </label>
+            <button
+                type="submit"
+                className="button form__button"
+                onClick={onSubmit}
+                onMouseOver={changeButtonColor}> Login </button>
+        </form>
+    )
+ }
+
+export default LoginForm;
