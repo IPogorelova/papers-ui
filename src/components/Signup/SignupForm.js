@@ -1,26 +1,25 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-const LOGIN_URL = 'https://papers-api.azurewebsites.net/api/v1/User/login';
+const REGISTER_URL = 'https://papers-api.azurewebsites.net/api/v1/User/register';
 
 const LoginForm = () => {
-    const [ email, setEmail] = React.useState('');
-    const [ password, setPassword] = React.useState('');
+    const [ email, setEmail ] = React.useState('');
+    const [ password, setPassword  ] = React.useState('');
 
     const onSubmit = (e) => {
         e.preventDefault()
-        axios.post(LOGIN_URL, {
+        axios({
+            method: 'POST',
+            url: REGISTER_URL,
+            data: {
                 email: email,
                 password: password
-            })
-            .then(function ( response ) {
-                const { accessToken, refreshToken } = response.data
-                localStorage.setItem('access', accessToken)
-                localStorage.setItem('refresh', refreshToken)
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+            }
+        }.then(function (response) {
+            console.log(response)
+        }))
+
     }
 
     const changeButtonColor = (e) => {
@@ -49,7 +48,7 @@ const LoginForm = () => {
                     name="email"
                     className="form__input"
                     onChange={e => setEmail(e.currentTarget.value)}
-                    onBlurCapture={e => setEmail(e.currentTarget.value)}
+                    onBlurCapture={e =>setEmail(e.currentTarget.value)}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                 />
@@ -70,9 +69,9 @@ const LoginForm = () => {
                 type="submit"
                 className="button form__button"
                 onClick={onSubmit}
-                onMouseOver={changeButtonColor}> Log in </button>
+                onMouseOver={changeButtonColor}> Sign up </button>
         </form>
     )
- }
+}
 
 export default LoginForm;

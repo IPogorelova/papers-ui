@@ -41,6 +41,10 @@ body {
   font-size: 2rem;
 }
 
+.subtitle_small {
+  font-size: 1.5rem;
+}
+
 .button {
   display: block;
   padding: 10px 28px;
