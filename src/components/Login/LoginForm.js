@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import axios from 'axios';
 
 const LOGIN_URL = 'https://papers-api.azurewebsites.net/api/v1/User/login';
@@ -15,6 +15,7 @@ const LoginForm = () => {
             })
             .then(function ( response ) {
                 const { accessToken, refreshToken } = response.data
+                localStorage.clear()
                 localStorage.setItem('access', accessToken)
                 localStorage.setItem('refresh', refreshToken)
             })

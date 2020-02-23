@@ -3,7 +3,7 @@ import SignupForm from "./SignupForm";
 
 const LoginPage = () => {
     return (
-        <React.Fragment>
+        <>
             <div className="inner">
                 <div className='inner__col'>
                     <h1 className='title'>Welcome to Papers &mdash;<br/>The Best Community Platform Ever</h1>
@@ -14,7 +14,7 @@ const LoginPage = () => {
                     <SignupForm />
                 </div>
             </div>
-        </React.Fragment>
+        </>
     )
 }
 

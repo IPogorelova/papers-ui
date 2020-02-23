@@ -8,18 +8,21 @@ const LoginForm = () => {
     const [ password, setPassword  ] = React.useState('');
 
     const onSubmit = (e) => {
-        e.preventDefault()
-        axios({
-            method: 'POST',
-            url: REGISTER_URL,
-            data: {
-                email: email,
-                password: password
-            }
-        }.then(function (response) {
-            console.log(response)
-        }))
-
+        console.log(email, password);
+        e.preventDefault();
+        axios.post(REGISTER_URL, {
+            email: email,
+            password: password
+        })
+            .then(function ( response ) {
+                const { accessToken, refreshToken } = response.data
+                localStorage.clear()
+                localStorage.setItem('access', accessToken)
+                localStorage.setItem('refresh', refreshToken)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     const changeButtonColor = (e) => {
