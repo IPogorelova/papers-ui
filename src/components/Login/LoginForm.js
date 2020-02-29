@@ -1,11 +1,21 @@
 import React from 'react';
 import axios from 'axios';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    Redirect,
+    useHistory,
+    useLocation
+} from "react-router-dom";
 
 const LOGIN_URL = 'https://papers-api.azurewebsites.net/api/v1/User/login';
 
 const LoginForm = () => {
     const [ email, setEmail] = React.useState('');
     const [ password, setPassword] = React.useState('');
+    let history = useHistory();
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -18,6 +28,7 @@ const LoginForm = () => {
                 localStorage.clear()
                 localStorage.setItem('access', accessToken)
                 localStorage.setItem('refresh', refreshToken)
+                history.push("/communities")
             })
             .catch(function (error) {
                 console.log(error);
