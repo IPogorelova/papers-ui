@@ -8,7 +8,6 @@ const LoginForm = () => {
     const [ password, setPassword  ] = React.useState('');
 
     const onSubmit = (e) => {
-        console.log(email, password);
         e.preventDefault();
         axios.post(REGISTER_URL, {
             email: email,
@@ -23,15 +22,6 @@ const LoginForm = () => {
             .catch(function (error) {
                 console.log(error);
             });
-    }
-
-    const changeButtonColor = (e) => {
-        let colors = ["rgb(147, 183, 190)", "rgb(255, 202, 156)", "rgb(102, 51, 153)", "rgb(114, 4, 8)", "rgb(0, 59, 33)", "rgb(243, 207, 216)"];
-        let bg = window.getComputedStyle(e.target, null).getPropertyValue("background-color");
-        colors.splice((colors.indexOf(bg)), 1);
-        let randomNumber = Math.floor(Math.random()*colors.length);
-
-        e.target.style.backgroundColor = colors[randomNumber];
     }
 
     const handleFocus = (e) => {
@@ -71,8 +61,7 @@ const LoginForm = () => {
             <button
                 type="submit"
                 className="button form__button"
-                onClick={onSubmit}
-                onMouseOver={changeButtonColor}> Sign up </button>
+                onClick={onSubmit}> Sign up </button>
         </form>
     )
 }
