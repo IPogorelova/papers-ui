@@ -17,7 +17,6 @@ const Community = ({ name, link }) =>{
             <a className='community-block'>
                 <span className="community-block__title">SPB DOT NET</span>
             </a>
-            <button className="community-block community-block_button">+</button>
         </>
     )
 }
@@ -50,18 +49,20 @@ const CommunitiesListPage = () => {
                 <div className="inner">
                     <div className="communities-list">
                         {communities.map((community, i) => <Community key={`community-${i}`} image='' link={community.id} name={community.title}/>)}
+                        <button className="community-block community-block_button">+</button>
                     </div>
                 </div>
             </>
         )
     } else if (error) {
-        switch(error) {
+        switch (error) {
             case 401: {
                 return (
                     <>
-                        <h1 style={{ width: 'fit-content', height: 'fit-content', margin: 'auto' }}>Hmmmm...</h1>
-                        <p style={{ width: 'fit-content', height: 'fit-content', margin: 'auto' }}>
-                            Seems like you are unauthorized. Please <a href="/signup">Sign up</a> or <a href="/login">Sign in</a> to continue your work.
+                        <h1 style={{width: 'fit-content', height: 'fit-content', margin: 'auto'}}>Hmmmm...</h1>
+                        <p style={{width: 'fit-content', height: 'fit-content', margin: 'auto'}}>
+                            Seems like you are unauthorized. Please <a href="/signup">Sign up</a> or <a href="/login">Sign
+                            in</a> to continue your work.
                         </p>
                     </>
                 )
@@ -69,13 +70,22 @@ const CommunitiesListPage = () => {
             default: {
                 return (
                     <>
-                        <h1 style={{ width: 'fit-content', height: 'fit-content', margin: 'auto' }}>Ooops...</h1>
-                        <p style={{ width: 'fit-content', height: 'fit-content', margin: 'auto' }}>Something went wrong, but we know and fixing already</p>
+                        <h1 style={{width: 'fit-content', height: 'fit-content', margin: 'auto'}}>Ooops...</h1>
+                        <p style={{width: 'fit-content', height: 'fit-content', margin: 'auto'}}>Something went wrong,
+                            but we know and fixing already</p>
                     </>
                 )
             }
         }
-
+    } else if (communities.length === 0) {
+        return (
+            <div className="inner">
+                <div className="communities-list">
+                    <p style={{textAlign: 'center', color: '#dddddd'}}>Create your first community</p>
+                    <button className="community-block community-block_button">+</button>
+                </div>
+            </div>
+        )
     } else {
         return (
             <p style={{ width: 'fit-content', height: 'fit-content', margin: 'auto' }}>Please, wait...</p>
