@@ -1,7 +1,9 @@
 import React from 'react';
-import axios from "axios";
+import axios from 'axios';
+import cn from 'classnames'
 
 import './communities-list.scss'
+import LoginForm from "../Login/LoginForm";
 
 const GET_COMMUNITIES_URL = 'https://papers-api.azurewebsites.net/api/v1/Communities/'
 
@@ -24,6 +26,7 @@ const Community = ({ name, link }) =>{
 const CommunitiesListPage = () => {
     const [ communities, setCommunities ] = React.useState([])
     const [ error, setError ] = React.useState(null)
+    const [ isFormShown, setIsFormShown ] = React.useState(false)
 
     React.useEffect(() => {
         const fetchData = async () => {
@@ -82,7 +85,10 @@ const CommunitiesListPage = () => {
             <div className="inner">
                 <div className="communities-list">
                     <p style={{textAlign: 'center', color: '#dddddd'}}>Create your first community</p>
-                    <button className="community-block community-block_button">+</button>
+                    <button className="community-block community-block_button" onClick={() => {setIsFormShown(!isFormShown)}}>+</button>
+                </div>
+                <div className={cn('form__wrapper inner__col community-form', {'community-form_shown' : isFormShown})} >
+
                 </div>
             </div>
         )

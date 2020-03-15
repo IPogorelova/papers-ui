@@ -40,3 +40,20 @@
     background-color: #663399;
   }
 }
+
+.community-form {
+  width: 0;
+  min-width: unset;
+  margin-top: 50vh;
+  height: 175px;
+  transform: scaleY(1);
+  transform-origin: bottom;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease-in-out, width 0.8s ease-in-out 0.4s;
+
+  &_shown {
+    width: 35vw;
+    transform: scaleY(2);
+    transition: width 0.4s ease-in-out, transform 0.8s ease-in-out 0.4s;
+  }
+}
