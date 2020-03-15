@@ -49,11 +49,11 @@
   transform: scaleY(1);
   transform-origin: bottom;
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
-  transition: transform 0.4s ease-in-out, width 0.8s ease-in-out 0.4s;
+  transition: transform 0.4s ease-in-out, width 0.7s ease-in-out 0.3s;
 
   &_shown {
     width: 35vw;
     transform: scaleY(2);
-    transition: width 0.4s ease-in-out, transform 0.8s ease-in-out 0.4s;
+    transition: width 0.4s ease-in-out, transform 0.7s ease-in-out 0.3s;
   }
 }
