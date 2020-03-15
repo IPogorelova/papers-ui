@@ -3,7 +3,7 @@ import axios from "axios";
 
 import './communities-list.scss'
 
-const GET_COMMUNITIES_URL = 'https://papers-api.azurewebsites.net/api/v1/Communities/owned-by-user'
+const GET_COMMUNITIES_URL = 'https://papers-api.azurewebsites.net/api/v1/Communities/'
 
 const Community = ({ name, link }) =>{
     return (

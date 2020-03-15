@@ -13,8 +13,8 @@ import {
 const LOGIN_URL = 'https://papers-api.azurewebsites.net/api/v1/User/login';
 
 const LoginForm = () => {
-    const [ email, setEmail] = React.useState('');
-    const [ password, setPassword] = React.useState('');
+    const [ email, setEmail ] = React.useState('');
+    const [ password, setPassword ] = React.useState('');
     let history = useHistory();
 
     const onSubmit = (e) => {
