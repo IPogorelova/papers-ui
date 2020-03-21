@@ -3,6 +3,16 @@
   flex-direction: column;
   width: fit-content;
   margin: auto;
+
+  &__text {
+    text-align: center;
+    color: #dddddd;
+
+    &_active {
+      text-align: left;
+      color: #000000;
+    }
+  }
 }
 
 .community-block {
@@ -37,23 +47,31 @@
     font-size: 50px;
     line-height: 50px;
     color: #ffffff;
-    background-color: #663399;
+    //background-color: #663399;
+    background-color: #9966cc;
+
+    &:disabled {
+      background-color: #eeeeee;
+      border: #eeeeee;
+      cursor: default;
+
+      &:hover {
+        box-shadow: none;
+      }
+    }
   }
 }
 
 .community-form {
-  width: 0;
-  min-width: unset;
-  margin-top: 50vh;
-  height: 175px;
-  transform: scaleY(1);
-  transform-origin: bottom;
+  position: relative;
+  right: -100vw;
+  width: 35vw;
+  height: 350px;
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
-  transition: transform 0.4s ease-in-out, width 0.7s ease-in-out 0.3s;
+  transition: right 0.8s ease-in;
 
   &_shown {
-    width: 35vw;
-    transform: scaleY(2);
-    transition: width 0.4s ease-in-out, transform 0.7s ease-in-out 0.3s;
+    right: 0;
+    transition: right 0.4s ease-out;
   }
 }

@@ -3,7 +3,6 @@ import axios from 'axios';
 import cn from 'classnames'
 
 import './communities-list.scss'
-import LoginForm from "../Login/LoginForm";
 
 const GET_COMMUNITIES_URL = 'https://papers-api.azurewebsites.net/api/v1/Communities/'
 
@@ -13,12 +12,12 @@ const Community = ({ name, link }) =>{
             <a href={`/communities/${link}/requests`} className='community-block'>
                 <span className="community-block__title">{name}</span>
             </a>
-            <a className='community-block'>
-                <span className="community-block__title">PiterJS</span>
-            </a>
-            <a className='community-block'>
-                <span className="community-block__title">SPB DOT NET</span>
-            </a>
+            {/*<a className='community-block'>*/}
+            {/*    <span className="community-block__title">PiterJS</span>*/}
+            {/*</a>*/}
+            {/*<a className='community-block'>*/}
+            {/*    <span className="community-block__title">SPB DOT NET</span>*/}
+            {/*</a>*/}
         </>
     )
 }
@@ -27,6 +26,7 @@ const CommunitiesListPage = () => {
     const [ communities, setCommunities ] = React.useState([])
     const [ error, setError ] = React.useState(null)
     const [ isFormShown, setIsFormShown ] = React.useState(false)
+    const [ isDisabled, setIsDisabled ] = React.useState(false)
 
     React.useEffect(() => {
         const fetchData = async () => {
@@ -52,7 +52,17 @@ const CommunitiesListPage = () => {
                 <div className="inner">
                     <div className="communities-list">
                         {communities.map((community, i) => <Community key={`community-${i}`} image='' link={community.id} name={community.title}/>)}
-                        <button className="community-block community-block_button">+</button>
+                        <button
+                            className="community-block community-block_button"
+                            disabled={isDisabled}
+                            onClick={() => {
+                                setIsFormShown(true)
+                                setIsDisabled(true)
+                            }}
+                        >+</button>
+                    </div>
+                    <div className={cn('form__wrapper inner__col community-form', {'community-form_shown' : isFormShown})} >
+
                     </div>
                 </div>
             </>
@@ -84,8 +94,20 @@ const CommunitiesListPage = () => {
         return (
             <div className="inner">
                 <div className="communities-list">
-                    <p style={{textAlign: 'center', color: '#dddddd'}}>Create your first community</p>
-                    <button className="community-block community-block_button" onClick={() => {setIsFormShown(!isFormShown)}}>+</button>
+                    <p className={cn('communities-list__text', {'communities-list__text_active' : isFormShown})}>
+                        { isFormShown ?
+                            'Fill this form to tell users something encourage about your community' :
+                            'Create your first community'
+                        }
+                    </p>
+                    <button
+                        className="community-block community-block_button"
+                        disabled={isDisabled}
+                        onClick={() => {
+                            setIsFormShown(true)
+                            setIsDisabled(true)
+                        }}
+                    >+</button>
                 </div>
                 <div className={cn('form__wrapper inner__col community-form', {'community-form_shown' : isFormShown})} >
 

@@ -29,7 +29,7 @@ const CfpForm = ({communityId}) => {
     }
 
     const changeButtonColor = (e) => {
-        let colors = ["rgb(147, 183, 190)", "rgb(255, 202, 156)", "rgb(102, 51, 153)", "rgb(114, 4, 8)", "rgb(0, 59, 33)", "rgb(243, 207, 216)"];
+        let colors = ["rgb(147, 183, 190)", "rgb(255, 202, 156)", "rgb(153, 102, 204)", "rgb(114, 4, 8)", "rgb(0, 59, 33)", "rgb(243, 207, 216)"];
         let bg = window.getComputedStyle(e.target, null).getPropertyValue("background-color");
         colors.splice((colors.indexOf(bg)), 1);
         let randomNumber = Math.floor(Math.random()*colors.length);
