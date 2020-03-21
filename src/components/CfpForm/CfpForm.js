@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import { isEmpty } from 'lodash';
 import './CfpForm.scss';
+
+const POST_CFP_URL = 'https://papers-api.azurewebsites.net/api/v1/communities/'
 
 const CfpForm = ({communityId}) => {
     const [name, setName] = React.useState('');
@@ -13,8 +14,6 @@ const CfpForm = ({communityId}) => {
     const [ isThanxShown, setIsThanxShown ]= React.useState(false)
     const { register, handleSubmit, errors } = useForm()
 
-    const POST_CFP_URL = 'https://papers-api.azurewebsites.net/api/v1/communities/'
-
     const postCfp = () => {
         setIsThanxShown(true)
         axios.post(`${POST_CFP_URL}/${communityId}/Requests/`, {
@@ -22,10 +21,14 @@ const CfpForm = ({communityId}) => {
             abstract: abstract,
             requesterName: name,
             requesterEmail: email
+        }, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
-            .then((response) => {
-                console.log(response)
-            })
+        .then((response) => {
+            console.log(response)
+        })
     }
 
     const changeButtonColor = (e) => {

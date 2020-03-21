@@ -15,17 +15,21 @@ const SignupForm = () => {
         axios.post(REGISTER_URL, {
             email: email,
             password: password
+        }, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
-            .then(function ( response ) {
-                setIsThanxShown(true)
-                const { accessToken, refreshToken } = response.data
-                localStorage.clear()
-                localStorage.setItem('access', accessToken)
-                localStorage.setItem('refresh', refreshToken)
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        .then(function ( response ) {
+            setIsThanxShown(true)
+            const { accessToken, refreshToken } = response.data
+            localStorage.clear()
+            localStorage.setItem('access', accessToken)
+            localStorage.setItem('refresh', refreshToken)
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
 
     const handleFocus = (e) => {

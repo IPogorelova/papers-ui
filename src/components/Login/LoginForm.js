@@ -22,6 +22,10 @@ const LoginForm = () => {
         axios.post(LOGIN_URL, {
                 email: email,
                 password: password
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             })
             .then(function ( response ) {
                 const { accessToken, refreshToken } = response.data

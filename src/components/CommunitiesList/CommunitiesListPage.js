@@ -3,10 +3,12 @@ import axios from 'axios';
 import cn from 'classnames'
 
 import './communities-list.scss'
+import CommunityForm from "../CommunityForm/CommunityForm";
 
 const GET_COMMUNITIES_URL = 'https://papers-api.azurewebsites.net/api/v1/Communities/'
 
-const Community = ({ name, link }) =>{
+const Community = ({ name, link }) => {
+    console.log(name)
     return (
         <>
             <a href={`/communities/${link}/requests`} className='community-block'>
@@ -62,7 +64,7 @@ const CommunitiesListPage = () => {
                         >+</button>
                     </div>
                     <div className={cn('form__wrapper inner__col community-form', {'community-form_shown' : isFormShown})} >
-
+                        <CommunityForm />
                     </div>
                 </div>
             </>
@@ -110,7 +112,7 @@ const CommunitiesListPage = () => {
                     >+</button>
                 </div>
                 <div className={cn('form__wrapper inner__col community-form', {'community-form_shown' : isFormShown})} >
-
+                    <CommunityForm />
                 </div>
             </div>
         )

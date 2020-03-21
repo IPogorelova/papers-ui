@@ -65,9 +65,8 @@
 .community-form {
   position: relative;
   right: -100vw;
-  width: 35vw;
-  height: 350px;
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+  width: fit-content;
+  height: fit-content;
   transition: right 0.8s ease-in;
 
   &_shown {
