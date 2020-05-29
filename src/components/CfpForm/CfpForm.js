@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import './CfpForm.scss';
 
 const POST_CFP_URL = 'https://papers-api.azurewebsites.net/api/v1/communities/'
 

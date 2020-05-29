@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import '../CfpForm/CfpForm.scss';
+
 const POST_COMMUNITY_URL = 'https://papers-api.azurewebsites.net/api/v1/Communities/'
 
 const CommunityForm = () => {

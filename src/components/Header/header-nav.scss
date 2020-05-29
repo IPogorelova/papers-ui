@@ -1,0 +1,22 @@
+.header-nav {
+  display: flex;
+
+  &__title {
+    margin-right: 8px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  &__link {
+
+    &_icon {
+      padding: 16px;
+
+      svg {
+        position: relative;
+        top: 1px;
+        height: 16px;
+      }
+    }
+  }
+}

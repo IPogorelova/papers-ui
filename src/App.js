@@ -1,17 +1,30 @@
 import React, {Component} from 'react';
 import { Switch, Route } from 'react-router-dom'
 import './App.css';
-import About from "./components/About/About";
-import LoginPage from "./components/Login/LoginPage";
-import SignupPage from "./components/Signup/SignupPage";
-import CommunityPage from "./components/Community/CommunityPage";
-import CommunitiesListPage from "./components/CommunitiesList/CommunitiesListPage";
+import About from './components/About/About';
+import LoginPage from './components/Login/LoginPage';
+import SignupPage from './components/Signup/SignupPage';
+import CommunityPage from './components/Community/CommunityPage';
+import CommunitiesListPage from './components/CommunitiesList/CommunitiesListPage';
+import Header from './components/Header/Header';
+
+const Page = () => {
+    return (
+      <>
+        <Header/>
+        <main>
+
+        </main>
+      </>
+    )
+}
 
 class App extends Component {
     render() {
         return(
-            <div className="App">
+            <div className='App'>
                 <Switch>
+                    <Route exact path='/' component={Page}/>
                     <Route exact path='/*/cfp' component={CommunityPage}/>
                     <Route exact path='/login' component={LoginPage}/>
                     <Route exact path='/signup' component={SignupPage}/>

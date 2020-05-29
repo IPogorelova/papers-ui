@@ -10,7 +10,7 @@
 
     &_active {
       text-align: left;
-      color: #000000;
+      color: $black;
     }
   }
 }
@@ -24,7 +24,7 @@
   height: 60px;
   margin-top: 10px;
   padding: 5px 30px;
-  border: 1px solid #cccccc;
+  border: 1px solid $grey-border;
   border-radius: 6px;
   box-shadow: 0 0 0px rgba(102, 51, 153, 0);
   transition: box-shadow 0.2s;
@@ -40,19 +40,19 @@
     height: fit-content;
     font-size: 24px;
     font-weight: 600;
-    color: #252525;
+    color: $black;
   }
 
   &_button {
     font-size: 50px;
     line-height: 50px;
-    color: #ffffff;
-    //background-color: #663399;
-    background-color: #9966cc;
+    color: $white;
+    //background-color: $purple-dark;
+    background-color: $purple;
 
     &:disabled {
-      background-color: #eeeeee;
-      border: #eeeeee;
+      background-color: $grey-disabled;
+      border: $grey-disabled;
       cursor: default;
 
       &:hover {

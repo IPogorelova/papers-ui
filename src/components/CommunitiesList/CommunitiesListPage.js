@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import cn from 'classnames'
 
-import './communities-list.scss'
 import CommunityForm from "../CommunityForm/CommunityForm";
 
 const GET_COMMUNITIES_URL = 'https://papers-api.azurewebsites.net/api/v1/Communities/'
