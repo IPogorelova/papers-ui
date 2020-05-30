@@ -20,7 +20,7 @@
     }
 
     a {
-      display: block;
+      display: flex;
       width: 100%;
       padding: 8px 0;
       font-weight: 500;
@@ -55,11 +55,12 @@
       transition: $base-animation;
 
       a {
-        color: $purple;
+        justify-content: center;
         margin: 0 auto;
         padding: 10px 0;
         font-size: 12px;
         text-align: center;
+        color: $purple;
       }
 
       &:hover {

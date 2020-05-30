@@ -1,6 +1,7 @@
 import React from 'react';
 import { ReactComponent as Overview } from '../../images/icons/overview.svg'
 import { ReactComponent as Papers } from '../../images/icons/papers.svg'
+import { ReactComponent as Talks } from '../../images/icons/talks.svg'
 import { ReactComponent as Members } from '../../images/icons/group.svg'
 import { ReactComponent as Settings } from '../../images/icons/settings.svg'
 
@@ -16,12 +17,17 @@ const Sidebar = () => {
           </li>
           <li className='sidebar-nav__link'>
             <a href='#'>
-              <Papers/> Papers
+              <Papers/> Requests
             </a>
           </li>
           <li className='sidebar-nav__link'>
             <a href='#'>
-              <Members/> Members
+              <Talks/> Talks
+            </a>
+          </li>
+          <li className='sidebar-nav__link'>
+            <a href='#'>
+              <Members/> Team
             </a>
           </li>
           <li className='sidebar-nav__link'>
