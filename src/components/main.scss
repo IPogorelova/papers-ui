@@ -14,6 +14,10 @@ body {
   overflow-x: hidden;
 }
 
+main {
+  padding-left: $sidebar-width;
+}
+
 h1, h2, h3, h4, h5, h6, p {
   margin: 0;
 }

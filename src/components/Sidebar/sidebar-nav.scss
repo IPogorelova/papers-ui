@@ -1,0 +1,74 @@
+.sidebar-nav {
+
+  &__link {
+    display: flex;
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 0 25px;
+    border-radius: 0 19px 19px 0;
+    border-left: 7px solid #ffffff;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      border-left-color: $grey-disabled;
+      background-color: $grey-disabled;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    a {
+      display: block;
+      width: 100%;
+      padding: 8px 0;
+      font-weight: 500;
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+      margin-right: 14px;
+    }
+
+    &_active {
+      border-left-color: $purple;
+
+      &:hover {
+        border-left-color: $purple;
+      }
+
+      a {
+        color: $purple;
+      }
+    }
+
+    &_button-type {
+      width: auto;
+      margin-top: 24px;
+      margin-left: 24px;
+      padding: 0 20px;
+      background-color: rgba($purple, 0.1);
+      border-radius: 6px;
+      border: none;
+      transition: $base-animation;
+
+      a {
+        color: $purple;
+        margin: 0 auto;
+        padding: 10px 0;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      &:hover {
+        background-color: rgba($purple-dark, 0.1);
+
+        a {
+          color: $purple-dark;
+        }
+      }
+    }
+  }
+}

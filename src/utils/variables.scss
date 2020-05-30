@@ -1,4 +1,4 @@
-/*colors*/
+/* colors */
 $white: #ffffff;
 $black: #252525;
 $grey-border: #cccccc;
@@ -6,7 +6,7 @@ $grey-disabled: #eeeeee;
 $purple: #9966cc;
 $purple-dark: #663399;
 
-/*fonts*/
+/* fonts */
 @font-face {
   font-family: 'Montserrat';
   src: url('../fonts/Montserrat/Montserrat-Regular.ttf');
@@ -51,3 +51,9 @@ $purple-dark: #663399;
 }
 
 $main-font: 'Montserrat', sans-serif;
+
+/* layout */
+$sidebar-width: 300px;
+
+/* animation */
+$base-animation: 0.2s ease-in-out;
