@@ -17,12 +17,12 @@ const Sidebar = () => {
           </li>
           <li className='sidebar-nav__link'>
             <a href='#'>
-              <Papers/> Requests
+              <Talks/> Requests
             </a>
           </li>
           <li className='sidebar-nav__link'>
             <a href='#'>
-              <Talks/> Talks
+              <Papers/> Process board
             </a>
           </li>
           <li className='sidebar-nav__link'>

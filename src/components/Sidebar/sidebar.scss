@@ -5,11 +5,11 @@
   width: $sidebar-width;
   height: 100vh;
   padding-top: 56px;
-  padding-right: 32px;
+  padding-right: 24px;
   background-color: $white;
   border-right: 1px solid $grey-disabled;
 
   &__nav {
-    margin-top: 80px;
+    margin-top: 48px;
   }
 }
