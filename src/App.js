@@ -8,6 +8,7 @@ import CommunityPage from './components/Community/CommunityPage';
 import CommunitiesListPage from './components/CommunitiesList/CommunitiesListPage';
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
+import RequestList from './components/RequestList/RequestList';
 
 const Page = () => {
     return (
@@ -15,6 +16,7 @@ const Page = () => {
         <Header/>
         <main>
             <Sidebar/>
+            <RequestList/>
         </main>
       </>
     )

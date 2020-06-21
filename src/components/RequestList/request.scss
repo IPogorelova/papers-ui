@@ -1,0 +1,32 @@
+.request {
+  position: relative;
+  padding: 32px 100px 32px 16px;
+  box-shadow: 0 0 3px rgba(102, 51, 153, 0.2);
+  //border-bottom: 1px solid $grey-border;
+
+  &__title {
+    margin-bottom: 12px;
+    font-size: 20px;
+  }
+
+  &__author {
+    font-style: italic;
+    color: $grey;
+  }
+
+  &__reaction-block {
+    display: flex;
+    position: absolute;
+    top: 36px;
+    right: 25px;
+  }
+
+  &__reaction {
+
+  }
+
+  &__content {
+    height: 0;
+    overflow: hidden;
+  }
+}

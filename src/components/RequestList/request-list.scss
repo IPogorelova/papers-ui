@@ -1,0 +1,9 @@
+.request-list {
+  width: calc(100% - 32px);
+  margin: auto;
+  margin-top: 48px;
+
+  &__item {
+    margin-top: 24px;
+  }
+}

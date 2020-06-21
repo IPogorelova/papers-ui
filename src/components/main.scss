@@ -15,6 +15,7 @@ body {
 }
 
 main {
+  padding-top: $header-height;
   padding-left: $sidebar-width;
 }
 
@@ -26,6 +27,21 @@ ul {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+button {
+  padding: unset;
+  background-color: unset;
+  border: none;
+  border-radius: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
 }
 
 .inner {

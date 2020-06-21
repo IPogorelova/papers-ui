@@ -1,6 +1,7 @@
 /* colors */
 $white: #ffffff;
 $black: #252525;
+$grey: #acacac;
 $grey-border: #cccccc;
 $grey-disabled: #eeeeee;
 $purple: #9966cc;
@@ -9,11 +10,28 @@ $purple-dark: #663399;
 /* fonts */
 @font-face {
   font-family: 'Montserrat';
+  src: url('../fonts/Montserrat/Montserrat-LightItalic.ttf');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
   src: url('../fonts/Montserrat/Montserrat-Regular.ttf');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../fonts/Montserrat/Montserrat-Italic.ttf');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
 @font-face {
   font-family: 'Montserrat';
   src: url('../fonts/Montserrat/Montserrat-Medium.ttf');
@@ -21,6 +39,15 @@ $purple-dark: #663399;
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../fonts/Montserrat/Montserrat-MediumItalic.ttf');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
 @font-face {
   font-family: 'Montserrat';
   src: url('../fonts/Montserrat/Montserrat-SemiBold.ttf');
@@ -28,6 +55,7 @@ $purple-dark: #663399;
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: 'Montserrat';
   src: url('../fonts/Montserrat/Montserrat-Bold.ttf');
@@ -35,6 +63,7 @@ $purple-dark: #663399;
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: 'Montserrat';
   src: url('../fonts/Montserrat/Montserrat-ExtraBold.ttf');
@@ -42,6 +71,7 @@ $purple-dark: #663399;
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: 'Montserrat';
   src: url('../fonts/Montserrat/Montserrat-Black.ttf');
@@ -54,6 +84,7 @@ $main-font: 'Montserrat', sans-serif;
 
 /* layout */
 $sidebar-width: 270px;
+$header-height: 56px;
 
 /* animation */
 $base-animation: 0.2s ease-in-out;
