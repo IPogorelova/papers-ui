@@ -1,24 +1,24 @@
 import React from 'react';
-import { ReactComponent as Overview } from '../../images/icons/overview.svg'
+import { ReactComponent as Like } from '../../images/icons/like.svg'
 
 const Request = ({item}) => {
   return (
     <div className='request-list__item request'>
       <h2 className='request__title'>{item.name}</h2>
       <span className='request__author'>{item.author}</span>
-      <div className='request__reaction-block'>
-        <div className='request__reaction request-reaction'>
-          <button className='request-reaction__button request-reaction__button_accept'>+</button>
+      <div className='request__reaction-block request-reaction'>
+        <button className='request-reaction__button request-reaction__button_accept'>
+          <Like />
           <span className='request-reaction__count request-reaction__count_accept'>
             {item.accept ? item.accept : '00'}
           </span>
-        </div>
-        <div className='request__reaction request-reaction'>
-          <button className='request-reaction__button request-reaction__button_reject'>-</button>
+        </button>
+        <button className='request-reaction__button request-reaction__button_reject'>
+          <Like />
           <span className='request-reaction__count request-reaction__count_reject'>
             {item.reject ? item.reject : '00'}
           </span>
-        </div>
+        </button>
       </div>
       <div className='request__content'>
         <p className='request__abstract'>{item.abstract}</p>

@@ -1,11 +1,18 @@
 .request-reaction {
 
-  &:first-child {
-    padding-right: 10px;
-    border-right: 1px solid $grey-border;
-  }
+  //&:first-child {
+  //  padding-right: 10px;
+  //  border-right: 1px solid $grey-border;
+  //}
+  //
+  //&:nth-child(2) {
+  //  padding-left: 10px;
+  //}
 
-  &:nth-child(2) {
-    padding-left: 10px;
+  &__button {
+
+    &_active {
+      background-color: $purple-light;
+    }
   }
 }
