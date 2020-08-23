@@ -2,21 +2,48 @@ import React from 'react';
 import { ReactComponent as Like } from '../../images/icons/like.svg'
 
 const Request = ({item}) => {
+  const [ isAccept, setIsAccept ] = React.useState(false);
+  const [ acceptAmount, setAcceptAmount ] = React.useState(item.accept);
+  const [ isReject, setIsReject ] = React.useState(false);
+  const [ rejectAmount, setRejectAmount ] = React.useState(item.reject);
+
   return (
     <div className='request-list__item request'>
       <h2 className='request__title'>{item.name}</h2>
       <span className='request__author'>{item.author}</span>
       <div className='request__reaction-block request-reaction'>
-        <button className='request-reaction__button request-reaction__button_accept'>
+        <button
+          className={`request-reaction__button request-reaction__button_accept ${isAccept ? 'request-reaction__button_active' : ''}`}
+          onClick={() => {
+            setIsAccept(!isAccept)
+            setAcceptAmount(!isAccept ? acceptAmount + 1 : acceptAmount - 1)
+            // if (!isAccept) {
+              setIsReject(false)
+              setRejectAmount(rejectAmount === 0 ? 0 : rejectAmount - 1)
+            // }
+          }}
+        >
           <Like />
-          <span className='request-reaction__count request-reaction__count_accept'>
-            {item.accept ? item.accept : '00'}
+          <span
+            className='request-reaction__count request-reaction__count_accept'
+          >
+            {acceptAmount ? acceptAmount : 0}
           </span>
         </button>
-        <button className='request-reaction__button request-reaction__button_reject'>
+        <button
+          className={`request-reaction__button request-reaction__button_reject ${isReject ? 'request-reaction__button_active' : ''}`}
+          onClick={() => {
+            setIsReject(!isReject)
+            setRejectAmount(!isReject ? rejectAmount + 1 : rejectAmount - 1)
+            // if (!isReject) {
+              setIsAccept(false)
+              setAcceptAmount(acceptAmount === 0 ? 0 : acceptAmount - 1)
+            // }
+          }}
+        >
           <Like />
           <span className='request-reaction__count request-reaction__count_reject'>
-            {item.reject ? item.reject : '00'}
+            {rejectAmount ? rejectAmount : 0}
           </span>
         </button>
       </div>
