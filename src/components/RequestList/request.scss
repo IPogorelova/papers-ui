@@ -1,13 +1,17 @@
 .request {
   position: relative;
-  padding: 32px 100px 32px 16px;
+  width: 100%;
+  padding: 32px 100px 24px 16px;
   background-color: $white;
   box-shadow: 0 0 3px rgba(102, 51, 153, 0.2);
   cursor: pointer;
+  text-align: left;
 
   &__title {
+    display: block;
     margin-bottom: 12px;
     font-size: 20px;
+    font-weight: bold;
   }
 
   &__author {
@@ -18,17 +22,74 @@
   &__reaction-block {
     display: flex;
     position: absolute;
-    top: 50%;
+    top: 32px;
     right: 25px;
-    transform: translateY(-50%);
-  }
-
-  &__reaction {
-
   }
 
   &__content {
+    display: none;
     height: 0;
     overflow: hidden;
+  }
+
+  &__abstract {
+    max-width: 500px;
+    margin-top: 24px;
+  }
+
+  &__decision-block {
+    display: flex;
+    margin-top: 24px;
+  }
+
+  &__decision {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    margin: 0 12px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    transition: $base-animation;
+
+    font-size: 12px;
+    text-align: center;
+
+    &_accept {
+      background-color: $purple-light;
+      border: $purple-light;
+      color: $purple;
+
+      &:hover {
+        color: $purple-dark;
+        background-color: rgba($purple-dark, 0.1);
+        border-color: rgba($purple-dark, 0.1);
+      }
+    }
+
+    &_reject {
+      border: 1px solid $purple-light;
+      color: $purple;
+
+      &:hover {
+        color: $purple-dark;
+        border-color: $purple;
+      }
+    }
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+
+  &_opened {
+
+    .request__content {
+      display: block;
+      height: fit-content;
+    }
   }
 }

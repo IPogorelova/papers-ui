@@ -11,8 +11,8 @@
 
     &:hover,
     &:focus {
-      border-left-color: $grey-disabled;
-      background-color: $grey-disabled;
+      border-left-color: transparent;
+      background-color: $purple-light;
     }
 
     &:last-of-type {
@@ -24,6 +24,7 @@
       width: 100%;
       padding: 8px 0;
       font-weight: 500;
+      color: $black;
     }
 
     svg {

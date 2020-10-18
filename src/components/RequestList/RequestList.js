@@ -2,14 +2,15 @@ import React from 'react';
 import { ReactComponent as Like } from '../../images/icons/like.svg'
 
 const Request = ({item}) => {
+  const [ isOpened, setIsOpened ] = React.useState(false);
   const [ isAccept, setIsAccept ] = React.useState(false);
   const [ acceptAmount, setAcceptAmount ] = React.useState(item.accept);
   const [ isReject, setIsReject ] = React.useState(false);
   const [ rejectAmount, setRejectAmount ] = React.useState(item.reject);
 
   return (
-    <div className='request-list__item request'>
-      <h2 className='request__title'>{item.name}</h2>
+    <button className={`request-list__item request ${isOpened ? 'request_opened' : ''}`} onClick={() => setIsOpened(!isOpened)}>
+      <span className='request__title'>{item.name}</span>
       <span className='request__author'>{item.author}</span>
       <div className='request__reaction-block request-reaction'>
         <button
@@ -17,10 +18,8 @@ const Request = ({item}) => {
           onClick={() => {
             setIsAccept(!isAccept)
             setAcceptAmount(!isAccept ? acceptAmount + 1 : acceptAmount - 1)
-            // if (!isAccept) {
-              setIsReject(false)
-              setRejectAmount(rejectAmount === 0 ? 0 : rejectAmount - 1)
-            // }
+            setIsReject(false)
+            setRejectAmount(rejectAmount === 0 ? 0 : rejectAmount - 1)
           }}
         >
           <Like />
@@ -35,10 +34,8 @@ const Request = ({item}) => {
           onClick={() => {
             setIsReject(!isReject)
             setRejectAmount(!isReject ? rejectAmount + 1 : rejectAmount - 1)
-            // if (!isReject) {
-              setIsAccept(false)
-              setAcceptAmount(acceptAmount === 0 ? 0 : acceptAmount - 1)
-            // }
+            setIsAccept(false)
+            setAcceptAmount(acceptAmount === 0 ? 0 : acceptAmount - 1)
           }}
         >
           <Like />
@@ -50,11 +47,23 @@ const Request = ({item}) => {
       <div className='request__content'>
         <p className='request__abstract'>{item.abstract}</p>
         <div className='request__decision-block'>
-          <button className='request__decision request__decision_accept'>Accept</button>
-          <button className='request__decision request__decision_reject'>Reject</button>
+          <button
+            type='button'
+            className='request__decision request__decision_accept'
+            onClick={(e) => e.preventDefault}
+          >
+            Accept
+          </button>
+          <button
+            type="button"
+            className='request__decision request__decision_reject'
+            onClick={(e) => e.preventDefault}
+          >
+            Reject
+          </button>
         </div>
       </div>
-    </div>
+    </button>
   )
 }
 
@@ -87,7 +96,6 @@ const RequestList = () => {
   return (
     <section className='request-list'>
       <h1 className='visually-hidden'>Requests list</h1>
-      <button className='request-list__button'>+</button>
       {
         items.map(item => <Request item={item}/>)
       }
