@@ -38,7 +38,7 @@
     }
 
     svg {
-      fill: $purple-light;
+      fill: $purple-medium;
       transition: fill $base-animation;
     }
   }
@@ -46,7 +46,7 @@
   &__count {
     display: block;
     font-size: 10px;
-    color: $purple-light;
+    color: $purple-medium;
     transition: color $base-animation;
 
     &_active {

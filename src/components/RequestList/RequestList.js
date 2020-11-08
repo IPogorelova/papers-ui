@@ -9,41 +9,43 @@ const Request = ({item}) => {
   const [ rejectAmount, setRejectAmount ] = React.useState(item.reject);
 
   return (
-    <button className={`request-list__item request ${isOpened ? 'request_opened' : ''}`} onClick={() => setIsOpened(!isOpened)}>
-      <span className='request__title'>{item.name}</span>
-      <span className='request__author'>{item.author}</span>
-      <div className='request__reaction-block request-reaction'>
-        <button
-          className={`request-reaction__button request-reaction__button_accept ${isAccept ? 'request-reaction__button_active' : ''}`}
-          onClick={() => {
-            setIsAccept(!isAccept)
-            setAcceptAmount(!isAccept ? acceptAmount + 1 : acceptAmount - 1)
-            setIsReject(false)
-            setRejectAmount(rejectAmount === 0 ? 0 : rejectAmount - 1)
-          }}
-        >
-          <Like />
-          <span
-            className='request-reaction__count request-reaction__count_accept'
+    <details className={`request-list__item request ${isOpened ? 'request_opened' : ''}`} onClick={() => setIsOpened(!isOpened)}>
+      <summary className='request__summary'>
+        <h2 className='request__title'>{item.name}</h2>
+        <span className='request__author'>{item.author}</span>
+        <div className='request__reaction-block request-reaction'>
+          <button
+            className={`request-reaction__button request-reaction__button_accept ${isAccept ? 'request-reaction__button_active' : ''}`}
+            onClick={() => {
+              setIsAccept(!isAccept)
+              setAcceptAmount(!isAccept ? acceptAmount + 1 : acceptAmount - 1)
+              setIsReject(false)
+              setRejectAmount(rejectAmount === 0 ? 0 : rejectAmount - 1)
+            }}
           >
+            <Like />
+            <span
+              className='request-reaction__count request-reaction__count_accept'
+            >
             {acceptAmount ? acceptAmount : 0}
           </span>
-        </button>
-        <button
-          className={`request-reaction__button request-reaction__button_reject ${isReject ? 'request-reaction__button_active' : ''}`}
-          onClick={() => {
-            setIsReject(!isReject)
-            setRejectAmount(!isReject ? rejectAmount + 1 : rejectAmount - 1)
-            setIsAccept(false)
-            setAcceptAmount(acceptAmount === 0 ? 0 : acceptAmount - 1)
-          }}
-        >
-          <Like />
-          <span className='request-reaction__count request-reaction__count_reject'>
+          </button>
+          <button
+            className={`request-reaction__button request-reaction__button_reject ${isReject ? 'request-reaction__button_active' : ''}`}
+            onClick={() => {
+              setIsReject(!isReject)
+              setRejectAmount(!isReject ? rejectAmount + 1 : rejectAmount - 1)
+              setIsAccept(false)
+              setAcceptAmount(acceptAmount === 0 ? 0 : acceptAmount - 1)
+            }}
+          >
+            <Like />
+            <span className='request-reaction__count request-reaction__count_reject'>
             {rejectAmount ? rejectAmount : 0}
           </span>
-        </button>
-      </div>
+          </button>
+        </div>
+      </summary>
       <div className='request__content'>
         <p className='request__abstract'>{item.abstract}</p>
         <div className='request__decision-block'>
@@ -63,7 +65,7 @@ const Request = ({item}) => {
           </button>
         </div>
       </div>
-    </button>
+    </details>
   )
 }
 

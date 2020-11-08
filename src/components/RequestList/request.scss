@@ -4,8 +4,15 @@
   padding: 32px 100px 24px 16px;
   background-color: $white;
   box-shadow: 0 0 3px rgba(102, 51, 153, 0.2);
-  cursor: pointer;
   text-align: left;
+
+  &__summary {
+    cursor: pointer;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
 
   &__title {
     display: block;
@@ -24,12 +31,6 @@
     position: absolute;
     top: 32px;
     right: 25px;
-  }
-
-  &__content {
-    display: none;
-    height: 0;
-    overflow: hidden;
   }
 
   &__abstract {
@@ -82,14 +83,6 @@
 
     &:last-of-type {
       margin-right: 0;
-    }
-  }
-
-  &_opened {
-
-    .request__content {
-      display: block;
-      height: fit-content;
     }
   }
 }

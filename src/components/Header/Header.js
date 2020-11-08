@@ -6,7 +6,7 @@ const Header = () => {
     <header className='header'>
       <a href='/' className='header__logo'>Papers</a>
       <nav className='header__nav header-nav' aria-label='Site navigation'>
-        <h1 className='header-nav__title'>My page</h1>
+        <span className='header-nav__title'>My page</span>
         <ul>
           <li>
             <a href='/login' className='header-nav__link header-nav__link_icon'>
