@@ -10,7 +10,7 @@ import {
     useLocation
 } from "react-router-dom";
 
-const LOGIN_URL = 'https://papers-api.azurewebsites.net/api/v1/User/login';
+const LOGIN_URL = 'http://papers.community/api/Users/login';
 
 const LoginForm = () => {
     const [ email, setEmail ] = React.useState('');

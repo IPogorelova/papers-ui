@@ -1,5 +1,6 @@
 import React from 'react';
 import { ReactComponent as Like } from '../../images/icons/like.svg'
+import axios from 'axios'
 
 const Request = ({item}) => {
   const [ isOpened, setIsOpened ] = React.useState(false);
@@ -93,13 +94,16 @@ const items = [
   }
 ]
 
-const RequestList = () => {
+const RequestList = ({requests}) => {
 
   return (
     <section className='request-list'>
       <h1 className='visually-hidden'>Requests list</h1>
-      {
-        items.map(item => <Request item={item}/>)
+      { requests.length === 0
+        ?
+        <p>There is no requests yet :(</p>
+        :
+        requests.map(item => <Request item={item}/>)
       }
     </section>
   )

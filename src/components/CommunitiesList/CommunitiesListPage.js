@@ -4,7 +4,7 @@ import cn from 'classnames'
 
 import CommunityForm from "../CommunityForm/CommunityForm";
 
-const GET_COMMUNITIES_URL = 'https://papers-api.azurewebsites.net/api/v1/Communities/'
+const GET_COMMUNITIES_URL = 'http://papers.community/api/Communities/'
 
 const Community = ({ name, link }) => {
     console.log(name)
@@ -13,12 +13,6 @@ const Community = ({ name, link }) => {
             <a href={`/communities/${link}/requests`} className='community-block'>
                 <span className="community-block__title">{name}</span>
             </a>
-            {/*<a className='community-block'>*/}
-            {/*    <span className="community-block__title">PiterJS</span>*/}
-            {/*</a>*/}
-            {/*<a className='community-block'>*/}
-            {/*    <span className="community-block__title">SPB DOT NET</span>*/}
-            {/*</a>*/}
         </>
     )
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 
-const POST_COMMUNITY_URL = 'https://papers-api.azurewebsites.net/api/v1/Communities/'
+const POST_COMMUNITY_URL = 'http://papers.community/api/Communities/'
 
 const CommunityForm = () => {
     const [title, setTitle] = React.useState('');

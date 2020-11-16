@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {useHistory} from "react-router-dom";
 
-const REGISTER_URL = 'https://papers-api.azurewebsites.net/api/v1/User/register';
+const REGISTER_URL = 'http://papers.community/api/Users';
+
+// TODO: add Name field to the form and refactor onSubmit function
 
 const SignupForm = () => {
     const [ email, setEmail ] = React.useState('');
@@ -14,7 +16,8 @@ const SignupForm = () => {
         e.preventDefault();
         axios.post(REGISTER_URL, {
             email: email,
-            password: password
+            password: password,
+            name: 'Cat'
         }, {
             headers: {
                 'Content-Type': 'application/json'

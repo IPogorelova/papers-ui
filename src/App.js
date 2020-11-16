@@ -6,6 +6,7 @@ import LoginPage from './components/Login/LoginPage';
 import SignupPage from './components/Signup/SignupPage';
 import CommunityPage from './components/Community/CommunityPage';
 import CommunitiesListPage from './components/CommunitiesList/CommunitiesListPage';
+import RequestListPage from './components/RequestList/RequestListPage';
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 import RequestList from './components/RequestList/RequestList';
@@ -33,7 +34,7 @@ class App extends Component {
                     <Route exact path='/signup' component={SignupPage}/>
                     <Route exact path='/about' component={About}/>
                     <Route exact path='/communities' component={CommunitiesListPage}/>
-                    {/*<Route exact path='/communities/*\/requests' component={RequestsPage}/>*/}
+                    <Route exact path='/*\/requests' component={RequestListPage}/>
                     {/*<Route exact path='/communities/*\/edit' component={EditPage}/>*/}
                 </Switch>
             </div>

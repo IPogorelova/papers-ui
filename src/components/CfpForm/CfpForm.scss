@@ -4,6 +4,7 @@
   padding: 40px 35px;
   box-shadow: 0 0 7px rgba(0,0,0,0.1);
   border-radius: 3px;
+  background-color: $white;
 
   &__wrapper {
     width: fit-content;
@@ -44,6 +45,7 @@
     height: 430px;
     margin-top: 75px;
     padding: 40px 35px;
+    background-color: $white;
     box-shadow: 0 0 7px rgba(0,0,0,0.1);
     border-radius: 3px;
   }
