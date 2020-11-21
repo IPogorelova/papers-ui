@@ -24,21 +24,21 @@ const CommunitiesListPage = () => {
     const [ isDisabled, setIsDisabled ] = React.useState(false)
 
     React.useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios.get(GET_COMMUNITIES_URL, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.access}`
-                }
-            })
-                .then(function ( response ) {
-                    // return response
-                    setCommunities(response.data)
-                })
-                .catch(function (error) {
-                    setError(error.response.status)
-                });
-        }
-        fetchData()
+      const fetchData = async () => {
+        const result = await axios.get(GET_COMMUNITIES_URL, {
+          headers: {
+            Authorization: `Bearer ${localStorage.access}`
+          }
+        })
+          .then(function ( response ) {
+            // return response
+            setCommunities(response.data)
+          })
+          .catch(function (error) {
+            setError(error.response.status)
+          });
+      }
+      fetchData()
     },  [])
 
     if (communities.length > 0 && !error) {
@@ -46,7 +46,9 @@ const CommunitiesListPage = () => {
             <>
                 <div className="inner">
                     <div className="communities-list">
-                        {communities.map((community, i) => <Community key={`community-${i}`} image='' link={community.id} name={community.title}/>)}
+                        {communities.map((community, i) =>
+                          <Community key={`community-${i}`} image='' link={community.alias} name={community.title} />
+                        )}
                         <button
                             className="community-block community-block_button"
                             disabled={isDisabled}
@@ -54,7 +56,9 @@ const CommunitiesListPage = () => {
                                 setIsFormShown(true)
                                 setIsDisabled(true)
                             }}
-                        >+</button>
+                        >
+                          +
+                        </button>
                     </div>
                     <div className={cn('form__wrapper inner__col community-form', {'community-form_shown' : isFormShown})} >
                         <CommunityForm />
@@ -102,7 +106,9 @@ const CommunitiesListPage = () => {
                             setIsFormShown(true)
                             setIsDisabled(true)
                         }}
-                    >+</button>
+                    >
+                      +
+                    </button>
                 </div>
                 <div className={cn('form__wrapper inner__col community-form', {'community-form_shown' : isFormShown})} >
                     <CommunityForm />

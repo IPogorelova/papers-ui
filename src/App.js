@@ -17,7 +17,7 @@ const Page = () => {
         <Header/>
         <main>
             <Sidebar/>
-            <RequestList/>
+            {/*<RequestList/>*/}
         </main>
       </>
     )

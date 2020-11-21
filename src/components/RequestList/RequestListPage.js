@@ -8,21 +8,6 @@ import RequestList from './RequestList'
 
 const GET_REQUESTS_URL = 'http://papers.community/api/Requests';
 
-const getRequests  = (communityID) => {
-  axios.get(GET_REQUESTS_URL,  {
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Tenant': communityID
-    }
-  })
-    .then(function ( response ) {
-      return response.data
-    })
-    .catch(function (error) {
-      return error;
-    });
-}
-
 const Community = ({ name, link }) => {
   console.log(name)
   return (
@@ -40,19 +25,31 @@ const RequestListPage = () => {
   const [ error, setError ] = React.useState(null)
 
   React.useEffect(() => {
-    let data = getRequests(communityID)
-    setRequests(data)
-    // setError(error)
-    console.log('data: ', data)
+    const getRequests  = (communityID) => {
+      axios.get(GET_REQUESTS_URL,  {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Tenant': communityID,
+          Authorization: `Bearer ${localStorage.access}`
+        }
+      })
+        .then(function ( response ) {
+          setRequests(response.data)
+        })
+        .catch(function (error) {
+          setError(error.response.status)
+        });
+    }
+    getRequests(communityID)
   },  [])
 
-  if (requests.length >= 0 && !error) {
+  if (requests && requests.length >= 0 && !error) {
     return (
       <>
         <Header/>
         <main>
           <Sidebar/>
-          <RequestList requests={requests} />
+          <RequestList requests={requests} communityID={communityID} />
         </main>
       </>
     )

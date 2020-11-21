@@ -2,26 +2,79 @@ import React from 'react';
 import { ReactComponent as Like } from '../../images/icons/like.svg'
 import axios from 'axios'
 
-const Request = ({item}) => {
+const Request = ({item, communityID}) => {
   const [ isOpened, setIsOpened ] = React.useState(false);
-  const [ isAccept, setIsAccept ] = React.useState(false);
-  const [ acceptAmount, setAcceptAmount ] = React.useState(item.accept);
-  const [ isReject, setIsReject ] = React.useState(false);
-  const [ rejectAmount, setRejectAmount ] = React.useState(item.reject);
+  const [ isAccept, setIsAccept ] = React.useState(!!item.thumbsUpCount);
+  const [ acceptAmount, setAcceptAmount ] = React.useState(item.thumbsUpCount);
+  const [ isReject, setIsReject ] = React.useState(!!item.thumbsDownCount);
+  const [ rejectAmount, setRejectAmount ] = React.useState(item.thumbsDownCount);
+  const [ abstract, setAbstract ] = React.useState('');
+  const [ abstractError, setAbstractError ] = React.useState(null);
+
+  const REQUEST_ID_URL = `http://papers.community/api/Requests/${item.id}`
+
+  const getAbstract = () => {
+    axios.get(REQUEST_ID_URL,  {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Tenant': communityID,
+        Authorization: `Bearer ${localStorage.access}`
+      }
+    })
+      .then(function ( response ) {
+        setAbstract(response.data.abstract)
+      })
+      .catch(function (error) {
+        setAbstractError(error.response.status)
+      });
+  }
+
+  const postReaction = (reaction) => {
+    axios.post(`${REQUEST_ID_URL}/${reaction}`, {},  {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Tenant': communityID,
+        Authorization: `Bearer ${localStorage.access}`
+      }
+    })
+  }
+
+  const deleteReaction = (reaction) => {
+    axios.delete(`${REQUEST_ID_URL}/${reaction}`,  {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Tenant': communityID,
+        Authorization: `Bearer ${localStorage.access}`
+      }
+    })
+  }
 
   return (
     <details className={`request-list__item request ${isOpened ? 'request_opened' : ''}`} onClick={() => setIsOpened(!isOpened)}>
-      <summary className='request__summary'>
-        <h2 className='request__title'>{item.name}</h2>
-        <span className='request__author'>{item.author}</span>
+      <summary
+        className='request__summary'
+        onClick={() => {
+          if (!abstract) {
+            getAbstract()
+          }
+        }}
+      >
+        <h2 className='request__title'>{item.topic}</h2>
+        <span className='request__author'>{item.requesterName}</span>
         <div className='request__reaction-block request-reaction'>
           <button
             className={`request-reaction__button request-reaction__button_accept ${isAccept ? 'request-reaction__button_active' : ''}`}
             onClick={() => {
               setIsAccept(!isAccept)
-              setAcceptAmount(!isAccept ? acceptAmount + 1 : acceptAmount - 1)
-              setIsReject(false)
-              setRejectAmount(rejectAmount === 0 ? 0 : rejectAmount - 1)
+              if (!isAccept) {
+                postReaction('thumbs-up')
+                setAcceptAmount(acceptAmount + 1)
+                setRejectAmount(rejectAmount === 0 ? 0 : rejectAmount - 1)
+                setIsReject(false)
+              } else {
+                deleteReaction('thumbs-up')
+                setAcceptAmount(acceptAmount - 1)
+              }
             }}
           >
             <Like />
@@ -34,10 +87,17 @@ const Request = ({item}) => {
           <button
             className={`request-reaction__button request-reaction__button_reject ${isReject ? 'request-reaction__button_active' : ''}`}
             onClick={() => {
-              setIsReject(!isReject)
-              setRejectAmount(!isReject ? rejectAmount + 1 : rejectAmount - 1)
-              setIsAccept(false)
-              setAcceptAmount(acceptAmount === 0 ? 0 : acceptAmount - 1)
+              if (!isReject) {
+                postReaction('thumbs-down')
+                setIsReject(!isReject)
+                setRejectAmount(rejectAmount + 1)
+                setIsAccept(false)
+                setAcceptAmount(acceptAmount === 0 ? 0 : acceptAmount - 1)
+              } else {
+                deleteReaction('thumbs-down')
+                setRejectAmount(rejectAmount - 1)
+              }
+
             }}
           >
             <Like />
@@ -48,7 +108,9 @@ const Request = ({item}) => {
         </div>
       </summary>
       <div className='request__content'>
-        <p className='request__abstract'>{item.abstract}</p>
+        <p className='request__abstract'>
+          {(abstract.length !== 0 && !abstractError) ? abstract : abstractError}
+        </p>
         <div className='request__decision-block'>
           <button
             type='button'
@@ -94,7 +156,7 @@ const items = [
   }
 ]
 
-const RequestList = ({requests}) => {
+const RequestList = ({requests, communityID}) => {
 
   return (
     <section className='request-list'>
@@ -103,7 +165,7 @@ const RequestList = ({requests}) => {
         ?
         <p>There is no requests yet :(</p>
         :
-        requests.map(item => <Request item={item}/>)
+        requests.map(item => <Request item={item} communityID={communityID} />)
       }
     </section>
   )
