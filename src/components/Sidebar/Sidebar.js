@@ -11,9 +11,11 @@ const Sidebar = () => {
 
   React.useEffect(() => {
     let pageHref = window.location.href.split('/')[4] ? window.location.href.split('/')[4] : window.location.href.split('/')[3];
-    let community = window.location.href.split('/')[3];
+    if (pageHref.includes('requests') || pageHref.includes('cfp')) {
+      let community = window.location.href.split('/')[3];
+      setCommunityId(community)
+    }
     setActiveItem(pageHref)
-    if (community) setCommunityId(community)
   })
 
   return (
