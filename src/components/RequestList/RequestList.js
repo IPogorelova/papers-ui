@@ -8,26 +8,9 @@ const Request = ({item, communityID}) => {
   const [ acceptAmount, setAcceptAmount ] = React.useState(item.thumbsUpCount);
   const [ isReject, setIsReject ] = React.useState(!!item.thumbsDownCount);
   const [ rejectAmount, setRejectAmount ] = React.useState(item.thumbsDownCount);
-  const [ abstract, setAbstract ] = React.useState('');
-  const [ abstractError, setAbstractError ] = React.useState(null);
+  const [ abstract, setAbstract ] = React.useState(item.abstract);
 
   const REQUEST_ID_URL = `http://papers.community/api/Requests/${item.id}`
-
-  const getAbstract = () => {
-    axios.get(REQUEST_ID_URL,  {
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Tenant': communityID,
-        Authorization: `Bearer ${localStorage.access}`
-      }
-    })
-      .then(function ( response ) {
-        setAbstract(response.data.abstract)
-      })
-      .catch(function (error) {
-        setAbstractError(error.response.status)
-      });
-  }
 
   const postReaction = (reaction) => {
     axios.post(`${REQUEST_ID_URL}/${reaction}`, {},  {
@@ -51,14 +34,7 @@ const Request = ({item, communityID}) => {
 
   return (
     <details className={`request-list__item request ${isOpened ? 'request_opened' : ''}`} onClick={() => setIsOpened(!isOpened)}>
-      <summary
-        className='request__summary'
-        onClick={() => {
-          if (!abstract) {
-            getAbstract()
-          }
-        }}
-      >
+      <summary className='request__summary'>
         <h2 className='request__title'>{item.topic}</h2>
         <span className='request__author'>{item.requesterName}</span>
         <div className='request__reaction-block request-reaction'>
@@ -97,7 +73,6 @@ const Request = ({item, communityID}) => {
                 deleteReaction('thumbs-down')
                 setRejectAmount(rejectAmount - 1)
               }
-
             }}
           >
             <Like />
@@ -109,7 +84,7 @@ const Request = ({item, communityID}) => {
       </summary>
       <div className='request__content'>
         <p className='request__abstract'>
-          {(abstract.length !== 0 && !abstractError) ? abstract : abstractError}
+          {abstract}
         </p>
         <div className='request__decision-block'>
           <button
